@@ -1,9 +1,11 @@
 package org.java.books;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// System.out.println("Hello World");
 
 		Scanner sc = new Scanner(System.in);
@@ -40,10 +42,44 @@ public class Main {
 			}
 		}
 
+		//obbligatorio
+		sc.close();
+
 		System.out.println("Ecco i libri inseriti: \n");
 
-		for (int i = 0; i < nLibri; i++) {
-			System.out.println(libro[i] + "\n");
+		// * soluzione differente (passaggio 1)--> FileWriter myWriter = new FileWriter("libri_inseriti.txt");
+
+		FileWriter myWriter = null;
+
+		try{
+
+			myWriter = new FileWriter("C:/Users/*****/Documents/libri_inseriti.txt", true);
+			//	* soluzione differente (passaggio 2)--> myWriter = new FileWriter(myWriter, true);
+
+			for (int i = 0; i < nLibri; i++) {
+				
+				myWriter.write(libro[i].getTitolo()+ "\n");
+				
+				System.out.println(libro[i] + "\n");
+			}
+
+		}catch(IOException e) {
+
+			System.err.println("Errore gestione file: " + e.getMessage()); 
+		
+		}finally{
+			
+//			if(myWriter != null){
+			
+				try {
+					myWriter.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+//			}
+
 		}
 		System.out.println("\n-------------------------------------\n");
 
