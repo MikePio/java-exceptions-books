@@ -15,4 +15,4 @@ Chiedere i dati per ogni libro (`titolo`, `numero pagine`, `autore`, `editore`),
 
 Quando vengono inseriti i dati, in caso di violazione dei vincoli di integrita' (es. **non accettare titolo o autore o editore vuoto**, **numero pagine ≤ 0**), scatenare un'eccezione, informare l'utente del problema, e chiedere nuovamente il set di dati.
 
-Al termine dell’inserimento scrivere tutti i titoli dei libri in un file (uno per riga) e in seguito rileggerli dal file mostradoli a video.
+Al termine dell’inserimento scrivere tutti i titoli dei libri in un file (uno per riga) e in seguito rileggerli dal file mostrandoli a video.
