@@ -1,17 +1,21 @@
 package org.java.books;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
+	
+	private static final String FILE_PATH = "C:/Users/miche/Documents/libri_inseriti.txt";
+	
 	public static void main(String[] args) throws IOException {
 		// System.out.println("Hello World");
-
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Inserisci la quantità dei libri da inserire: ");
 		int nLibri = Integer.valueOf(sc.nextLine());
-
+		
 		Libro[] libro = new Libro[nLibri];
 
 		for(int i=0;i<nLibri; i++){
@@ -47,13 +51,15 @@ public class Main {
 
 		System.out.println("Ecco i libri inseriti: \n");
 
+//*!  INIZIO --->  CREAZIONE E SCRITTURA DI TESTO IN UN FILE*/
 		// * soluzione differente (passaggio 1)--> FileWriter myWriter = new FileWriter("libri_inseriti.txt");
 
 		FileWriter myWriter = null;
 
 		try{
-
-			myWriter = new FileWriter("C:/Users/*****/Documents/libri_inseriti.txt", true);
+			myWriter = new FileWriter(FILE_PATH, true);
+			//* */ è la stessa cosa di
+			// myWriter = new FileWriter("C:/Users/miche/Documents/libri_inseriti.txt", true);
 			//	* soluzione differente (passaggio 2)--> myWriter = new FileWriter(myWriter, true);
 
 			for (int i = 0; i < nLibri; i++) {
@@ -81,9 +87,37 @@ public class Main {
 //			}
 
 		}
+//*! FINE ---> CREAZIONE E SCRITTURA DI TESTO IN UN FILE*/
+
 		System.out.println("\n-------------------------------------\n");
 
+//!  INIZIO --->   LETTURA DEL TESTO DI UN FILE
+		File file = new File(FILE_PATH);
+		// è la stessa cosa di
+		// File file = new File("C:/Users/miche/Documents/libri_inseriti.txt");
+		Scanner reader = null;
+		try {
+			reader = new Scanner(file);
+
+			while (reader.hasNextLine()) {
+				
+				String line = reader.nextLine();
+				System.out.println(line);
+			}
+
+		} catch(Exception e) {
+
+			System.out.println("Errore lettura del file: " + e.getMessage());
+
+		}finally{
+
+			if(reader != null){
+				
+				reader.close();
+			}
+		}
+//!  FINE --->   LETTURA DEL TESTO DI UN FILE
 
 	}
-
 }
+	
