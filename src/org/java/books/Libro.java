@@ -7,7 +7,7 @@ public class Libro {
   private String autore;
   private String editore;
 
-  public Libro(String titolo, int numeroPagine, String autore, String editore){
+  public Libro(String titolo, int numeroPagine, String autore, String editore) throws Exception{
     
 		setTitolo(titolo);
 		setNumeroPagine(numeroPagine);
@@ -19,7 +19,12 @@ public class Libro {
 		return titolo;
 	}
 	
-	public void setTitolo(String titolo) {
+	public void setTitolo(String titolo) throws Exception{
+
+		if(titolo.isBlank()){
+			throw new Exception("\nNon hai inserito nessun titolo");
+		}
+
 		this.titolo = titolo;
 	}
 	
@@ -27,7 +32,12 @@ public class Libro {
 		return numeroPagine;
 	}
 	
-	public void setNumeroPagine(int numeroPagine) {
+	public void setNumeroPagine(int numeroPagine) throws Exception {
+		
+		if(numeroPagine<=0){
+			throw new Exception("\nIl libro deve avere almeno una pagina");
+		}
+		
 		this.numeroPagine = numeroPagine;
 	}
 	
@@ -35,7 +45,12 @@ public class Libro {
 		return autore;
 	}
 	
-	public void setAutore(String autore) {
+	public void setAutore(String autore) throws Exception{
+
+		if(autore.isBlank()){
+			throw new Exception("\nNon hai inserito nessun autore");
+		}
+
 		this.autore = autore;
 	}
 	
@@ -43,7 +58,12 @@ public class Libro {
 		return editore;
 	}
 	
-	public void setEditore(String editore) {
+	public void setEditore(String editore) throws Exception{
+		
+		if(editore.isBlank()){
+			throw new Exception("\nNon hai inserito nessun editore");
+		}
+		
 		this.editore = editore;
 	}
 
