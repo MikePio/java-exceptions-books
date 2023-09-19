@@ -9,16 +9,42 @@ public class Main {
 	
 	private static final String FILE_PATH = "C:/Users/miche/Documents/libri_inseriti.txt";
 	
+	// //* Esempio semplice di try catch con ciclo while
+	// //? se inserisci un int continua all'infinito MENTRE se inserisci una stringa viene mostrato un errore
+	// public static void main(String[] args) {
+
+	// 	while (true){
+	// 		try {
+	// 			Scanner sc = new Scanner(System. in);
+	// 			System.out.print("Inserisci un numero(int): ");
+	// 			int value = Integer.valueOf(sc.nextLine());
+	// 		} catch (Exception e) {				
+	// 			System.err.println("Errore: " + e.getMessage() + "\nDevi inserire un numero intero");
+	// 		}
+	// 	}
+	// }
+
 	public static void main(String[] args) throws IOException {
 		// System.out.println("Hello World");
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Inserisci la quantità dei libri da inserire: ");
-		int nLibri = Integer.valueOf(sc.nextLine());
-		
-		Libro[] libro = new Libro[nLibri];
+		int quantitaLibri = 0;
 
-		for(int i=0;i<nLibri; i++){
+		while (quantitaLibri==0){
+			try {
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Inserisci la quantità dei libri da inserire: ");
+				int nLibri = Integer.valueOf(sc.nextLine());
+				quantitaLibri = nLibri;
+			} catch (Exception e) {				
+				System.err.println("Errore: " + e.getMessage() + "\nDevi inserire un numero intero");
+			}
+		}
+
+		Scanner sc = new Scanner(System.in);
+
+		Libro[] libro = new Libro[quantitaLibri];
+
+		for(int i=0;i<quantitaLibri; i++){
 			try{
 
 				System.out.print("Inserisci il titolo del libro " + (i+1) + ": ");
@@ -62,7 +88,7 @@ public class Main {
 			// myWriter = new FileWriter("C:/Users/miche/Documents/libri_inseriti.txt", true);
 			//	* soluzione differente (passaggio 2)--> myWriter = new FileWriter(myWriter, true);
 
-			for (int i = 0; i < nLibri; i++) {
+			for (int i = 0; i < quantitaLibri; i++) {
 				
 				myWriter.write(libro[i].getTitolo()+ "\n");
 				
